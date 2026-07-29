@@ -1,0 +1,6 @@
+{
+  "name": "Trivert - Produtora Audiovisual",
+  "description": "Calculadora de orçamento e portfólio cinematográfico para Trivert: Videomaker, Fotografia, Drone, Storymaker e Videomaker Mobile.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
