@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { PORTFOLIO_ITEMS } from '../data/portfolio';
 import { PortfolioItem } from '../types';
 import { Play, X, ExternalLink, Film } from 'lucide-react';
+import { responsiveImageSet, responsiveImageUrl } from '../utils/image';
 
 const getYouTubeVideoId = (url: string) => {
   const match = url.match(/(?:youtube\.com\/watch\?v=|youtube\.com\/embed\/|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
@@ -101,9 +102,12 @@ export const Portfolio: React.FC = () => {
               >
                 <div className="relative aspect-[4/5] overflow-hidden bg-zinc-950">
                   <img
-                    src={photo.image}
+                    src={responsiveImageUrl(photo.image, 800)}
+                    srcSet={responsiveImageSet(photo.image)}
+                    sizes="(max-width: 640px) 100vw, 33vw"
                     alt={photo.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    loading="lazy"
                     referrerPolicy="no-referrer"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
@@ -127,13 +131,23 @@ export const Portfolio: React.FC = () => {
                 key={item.id}
                 onClick={() => setSelectedVideo(item)}
                 className="group relative rounded-2xl overflow-hidden glass-card border border-white/10 cursor-pointer transition-all duration-300 hover:border-purple-500/50 hover:shadow-2xl hover:shadow-purple-900/20"
+                role="button"
+                tabIndex={0}
+                onKeyDown={(event) => {
+                  if (event.key === 'Enter' || event.key === ' ') {
+                    setSelectedVideo(item);
+                  }
+                }}
               >
                 {/* Poster Image */}
                 <div className="relative aspect-video overflow-hidden bg-zinc-950">
                   <img
                     src={getPosterImageUrl(item)}
+                    srcSet={!isYouTubeUrl(getPosterImageUrl(item)) ? responsiveImageSet(getPosterImageUrl(item)) : undefined}
+                    sizes="(max-width: 640px) 100vw, 33vw"
                     alt={item.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    loading="lazy"
                     referrerPolicy="no-referrer"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
@@ -216,8 +230,11 @@ export const Portfolio: React.FC = () => {
               ) : (
                 <video
                   src={selectedVideo.videoUrl}
+                  poster={getPosterImageUrl(selectedVideo)}
+                  preload="metadata"
                   controls
                   autoPlay
+                  playsInline
                   className="w-full h-full object-cover"
                 />
               )}

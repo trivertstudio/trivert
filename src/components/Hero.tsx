@@ -1,5 +1,6 @@
 import React from 'react';
 import { Calculator, Play, Sparkles, CheckCircle2, Film, Camera, Plane, Smartphone, Video } from 'lucide-react';
+import { responsiveImageSet, responsiveImageUrl } from '../utils/image';
 
 interface HeroProps {
   onNavigateToCalculator: () => void;
@@ -13,8 +14,8 @@ export const Hero: React.FC<HeroProps> = ({
   return (
     <section id="inicio" className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-grid-pattern">
       {/* Background Ambient Glows */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-purple-700/20 rounded-full blur-[140px] pointer-events-none animate-pulse-slow" />
-      <div className="absolute top-20 right-10 w-72 h-72 bg-purple-900/15 rounded-full blur-[100px] pointer-events-none" />
+      <div className="hidden md:block absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-purple-700/20 rounded-full blur-[140px] pointer-events-none animate-pulse-slow" />
+      <div className="hidden md:block absolute top-20 right-10 w-72 h-72 bg-purple-900/15 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
@@ -32,8 +33,8 @@ export const Hero: React.FC<HeroProps> = ({
 
             {/* Main Title */}
             <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-6xl font-extrabold tracking-tight leading-[1.1] text-white">
-              Sua história contada com estética{' '}
-              <span className="purple-gradient-text block sm:inline">
+              Sua história contada com estética{" "}
+              <span className="purple-gradient-text block sm:inline text-3xl sm:text-4xl">
                 cinematográfica.
               </span>
             </h1>
@@ -109,9 +110,12 @@ export const Hero: React.FC<HeroProps> = ({
                 {/* Simulated Film Preview Frame */}
                 <div className="relative aspect-video rounded-xl overflow-hidden bg-zinc-950 group cursor-pointer" onClick={onNavigateToPortfolio}>
                   <img
-                    src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=1000&q=80"
+                    src={responsiveImageUrl('https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=1000&q=80', 800)}
+                    srcSet={responsiveImageSet('https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=1000&q=80')}
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     alt="Equipamento de gravação Trivert"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-80"
+                    loading="lazy"
                     referrerPolicy="no-referrer"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent"></div>

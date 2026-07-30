@@ -74,3 +74,31 @@
 .animate-pulse-slow {
   animation: pulseSlow 8s ease-in-out infinite;
 }
+
+@media (max-width: 768px) {
+  .glass-card,
+  .glass-card-active,
+  .glass-panel {
+    backdrop-filter: blur(8px);
+    background: rgba(16, 16, 20, 0.88);
+  }
+
+  .bg-grid-pattern {
+    background-size: 30px 30px;
+  }
+
+  .purple-glow-sm,
+  .purple-glow-lg {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-pulse-slow,
+  .transition-transform,
+  .transition-all,
+  .transition-opacity {
+    animation: none !important;
+    transition: none !important;
+  }
+}

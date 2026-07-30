@@ -1,25 +1,26 @@
 import { PortfolioItem } from '../types';
+import { withAssetBuster } from '../utils/image';
 
 export const PORTFOLIO_ITEMS: PortfolioItem[] = [
   {
     id: '1',
-    title: 'Aura Luxury Residence',
+    title: 'institucional para redes sociais',
     category: 'institucional',
-    categoryLabel: 'Vídeo Institucional & Arquitetura',
-    posterUrl: 'https://www.youtube.com/watch?v=LrzL7pYa7eg',
-    videoUrl: 'https://www.youtube.com/watch?v=LrzL7pYa7eg',
-    client: 'Aura Incorporadora',
+    categoryLabel: 'Vídeo Institucional para lojas e Marcas',
+    posterUrl: 'https://www.youtube.com/watch?v=mDZ8eQmmepU',
+    videoUrl: 'https://www.youtube.com/watch?v=mDZ8eQmmepU',
+    client: 'lovely beauty',
     year: '2026',
     description: 'Filme arquitetônico de alto padrão combinando captação interna em 4K 60fps com tomadas aéreas de drone ao pôr do sol.'
   },
   {
     id: '2',
-    title: 'Festival Horizon Night',
+    title: 'Casamento Rubens e Sabrina',
     category: 'eventos',
     categoryLabel: 'Cobertura de Evento',
-    posterUrl: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1200&q=80',
-    videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-crowd-at-a-music-concert-40282-large.mp4',
-    client: 'Horizon Events',
+    posterUrl: 'https://www.youtube.com/watch?v=GDTeLF5CiQM',
+    videoUrl: 'https://www.youtube.com/watch?v=GDTeLF5CiQM',
+    client: 'Cliente Particular',
     year: '2026',
     description: 'Aftermovie energético com edição ritmada e cobertura de storymaker em tempo real para redes sociais.'
   },
@@ -28,31 +29,31 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     title: 'Vogue Urban Fashion Campaign',
     category: 'reels',
     categoryLabel: 'Reels & Mobile Content',
-    posterUrl: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1200&q=80',
-    videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-young-woman-posing-in-a-trendy-outfit-41315-large.mp4',
+    posterUrl: withAssetBuster('https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1200&q=80'),
+    videoUrl: withAssetBuster('https://assets.mixkit.co/videos/preview/mixkit-young-woman-posing-in-a-trendy-outfit-41315-large.mp4'),
     client: 'Vogue Studio',
     year: '2026',
     description: 'Vídeos verticais 9:16 com transições dinâmicas e iluminação estética focados em retenção de engajamento no Instagram.'
   },
   {
     id: '4',
-    title: 'Costa D\'Ouro Aerial Film',
+    title: 'Filmagem de casamento com drone',
     category: 'drone',
     categoryLabel: 'Drone Aéreo Cinematográfico',
-    posterUrl: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80',
-    videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-aerial-view-of-waves-crashing-on-a-beach-41484-large.mp4',
-    client: 'Resort Costa D\'Ouro',
+    posterUrl: 'https://www.youtube.com/watch?v=Ae1GDEj34Ys',
+    videoUrl: 'https://www.youtube.com/watch?v=Ae1GDEj34Ys',
+    client: 'Cliente Particular',
     year: '2025',
-    description: 'Imagens aéreas em 4K HDR com movimentos ultra-suaves de gimbal destacando a beleza natural da orla.'
+    description: 'Imagens aéreas em 4K HDR com movimentos ultra-suaves de gimbal destacando o evento.'
   },
   {
     id: '5',
-    title: 'TechX Launch Reveal',
+    title: 'Comercial de Produto: Lovely Beauty',
     category: 'comercial',
     categoryLabel: 'Comercial de Produto',
-    posterUrl: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1200&q=80',
-    videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-close-up-of-a-futuristic-device-41369-large.mp4',
-    client: 'TechX Global',
+    posterUrl: 'https://www.youtube.com/watch?v=nFG-FAsWWd8',
+    videoUrl: 'https://www.youtube.com/watch?v=nFG-FAsWWd8',
+    client: 'Lovely Beauty',
     year: '2026',
     description: 'Vídeo comercial focado em design de produto, jogo de luzes em estúdio escuro e animações de texto modernas.'
   },
@@ -61,7 +62,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     title: 'Essência da Marca',
     category: 'fotos',
     categoryLabel: 'Sessão Fotográfica',
-    posterUrl: 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=1200&q=80',
+    posterUrl: withAssetBuster('https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=1200&q=80'),
     videoUrl: '',
     client: 'Studio Belleza',
     year: '2025',

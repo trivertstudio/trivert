@@ -1,6 +1,7 @@
 import React from 'react';
 import { SERVICES } from '../data/services';
 import { Video, Camera, Plane, Smartphone, Film, Check, Plus, Lock } from 'lucide-react';
+import { responsiveImageSet, responsiveImageUrl } from '../utils/image';
 
 interface ServicesGridProps {
   selectedServiceIds: string[];
@@ -76,9 +77,12 @@ export const ServicesGrid: React.FC<ServicesGridProps> = ({
                 {/* Top Image Preview with Gradient */}
                 <div className="relative h-48 overflow-hidden bg-zinc-950">
                   <img
-                    src={service.image}
+                    src={responsiveImageUrl(service.image, 700)}
+                    srcSet={responsiveImageSet(service.image)}
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     alt={service.title}
                     className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                    loading="lazy"
                     referrerPolicy="no-referrer"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0e0e12] via-[#0e0e12]/60 to-transparent" />
