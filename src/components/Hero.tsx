@@ -31,9 +31,9 @@ export const Hero: React.FC<HeroProps> = ({
             </div>
 
             {/* Main Title */}
-            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-6xl font-extrabold tracking-tight leading-[1.1] text-white pb-6">
+            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-6xl font-extrabold tracking-tight leading-[1.1] text-white">
               Sua história contada com estética{' '}
-              <span className="purple-gradient-text block sm:inline text-3xl sm:text-4xl md:text-5xl lg:text-5xl">
+              <span className="purple-gradient-text block sm:inline">
                 cinematográfica.
               </span>
             </h1>

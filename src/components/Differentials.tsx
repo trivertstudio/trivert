@@ -5,7 +5,7 @@ export const Differentials: React.FC = () => {
   const differentials = [
     {
       icon: <Film className="w-6 h-6 text-purple-400" />,
-      title: 'Estética Cinematográfica 4K',
+      title: 'Estética Cinematográfica',
       description: 'Gravação em sensores de grande formato, perfis de cor Log/RAW e tratamento de cor personalizado para visual de cinema.'
     },
     {

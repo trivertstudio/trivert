@@ -87,11 +87,11 @@ export const MonthlyPlans: React.FC<MonthlyPlansProps> = ({ whatsappNumber }) =>
           </p>
         </div>
 
-        <div className="grid gap-6 lg:grid-cols-3">
+        <div className="flex gap-6 overflow-x-auto px-4 -mx-4 snap-x snap-mandatory lg:overflow-visible lg:grid lg:grid-cols-3 lg:px-0 lg:-mx-0">
           {plans.map((plan) => (
             <div
               key={plan.title}
-              className={`group relative rounded-[2rem] border border-white/10 bg-zinc-950/80 p-8 shadow-2xl shadow-purple-900/10 transition hover:-translate-y-1 ${
+              className={`snap-start flex-shrink-0 min-w-[80%] sm:min-w-[60%] md:min-w-[45%] lg:min-w-0 lg:flex-1 group relative rounded-[2rem] border border-white/10 bg-zinc-950/80 p-8 shadow-2xl shadow-purple-900/10 transition hover:-translate-y-1 ${
                 plan.highlight ? 'border-purple-500/40 bg-purple-950/50 shadow-purple-600/20' : ''
               }`}
             >
