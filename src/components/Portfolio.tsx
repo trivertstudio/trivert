@@ -22,11 +22,10 @@ const getPosterImageUrl = (item: PortfolioItem) => {
 };
 
 export const Portfolio: React.FC = () => {
-  const [activeCategory, setActiveCategory] = useState<string>('todos');
+  const [activeCategory, setActiveCategory] = useState<string>('institucional');
   const [selectedVideo, setSelectedVideo] = useState<PortfolioItem | null>(null);
 
   const categories = [
-    { id: 'todos', label: 'Todos' },
     { id: 'institucional', label: 'Institucional' },
     { id: 'eventos', label: 'Eventos' },
     { id: 'reels', label: 'Reels & Mobile' },
@@ -35,10 +34,25 @@ export const Portfolio: React.FC = () => {
     { id: 'fotos', label: 'Fotos' },
   ];
 
-  const filteredItems =
-    activeCategory === 'todos'
-      ? PORTFOLIO_ITEMS
-      : PORTFOLIO_ITEMS.filter((item) => item.category === activeCategory);
+  const filteredItems = PORTFOLIO_ITEMS.filter((item) => item.category === activeCategory);
+
+  const photoShowcase = [
+    {
+      title: 'Campanha Editorial',
+      image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1200&q=80',
+      description: 'Sessão de moda com direção artística, iluminação cinematográfica e estética premium.',
+    },
+    {
+      title: 'Produção de Evento',
+      image: 'https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?auto=format&fit=crop&w=1200&q=80',
+      description: 'Registro elegante de convidados, detalhes e momentos marcantes em alta resolução.',
+    },
+    {
+      title: 'Identidade Visual',
+      image: 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=1200&q=80',
+      description: 'Estética refinada para marcas que buscam uma presença visual forte e memorável.',
+    },
+  ];
 
   return (
     <section id="portfolio" className="py-24 bg-[#08080b] relative border-t border-white/5">
@@ -78,61 +92,91 @@ export const Portfolio: React.FC = () => {
         </div>
 
         {/* Grid of Portfolio Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredItems.map((item) => (
-            <div
-              key={item.id}
-              onClick={() => setSelectedVideo(item)}
-              className="group relative rounded-2xl overflow-hidden glass-card border border-white/10 cursor-pointer transition-all duration-300 hover:border-purple-500/50 hover:shadow-2xl hover:shadow-purple-900/20"
-            >
-              {/* Poster Image */}
-              <div className="relative aspect-video overflow-hidden bg-zinc-950">
-                <img
-                  src={getPosterImageUrl(item)}
-                  alt={item.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  referrerPolicy="no-referrer"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+        {activeCategory === 'fotos' ? (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {photoShowcase.map((photo, index) => (
+              <div
+                key={index}
+                className="group relative rounded-2xl overflow-hidden glass-card border border-white/10 transition-all duration-300 hover:border-purple-500/50 hover:shadow-2xl hover:shadow-purple-900/20"
+              >
+                <div className="relative aspect-[4/5] overflow-hidden bg-zinc-950">
+                  <img
+                    src={photo.image}
+                    alt={photo.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    referrerPolicy="no-referrer"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
+                </div>
 
-                {/* Play Button Overlay */}
-                <div className="absolute inset-0 flex items-center justify-center opacity-90 group-hover:opacity-100 transition-opacity">
-                  <div className="w-12 h-12 rounded-full bg-purple-600/90 text-white flex items-center justify-center shadow-lg shadow-purple-600/50 group-hover:scale-110 transition-transform">
-                    <Play className="w-5 h-5 fill-white ml-0.5" />
+                <div className="p-5 space-y-2">
+                  <h3 className="font-display font-bold text-lg text-white group-hover:text-purple-300 transition-colors">
+                    {photo.title}
+                  </h3>
+                  <p className="text-xs text-zinc-400 leading-relaxed">
+                    {photo.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredItems.map((item) => (
+              <div
+                key={item.id}
+                onClick={() => setSelectedVideo(item)}
+                className="group relative rounded-2xl overflow-hidden glass-card border border-white/10 cursor-pointer transition-all duration-300 hover:border-purple-500/50 hover:shadow-2xl hover:shadow-purple-900/20"
+              >
+                {/* Poster Image */}
+                <div className="relative aspect-video overflow-hidden bg-zinc-950">
+                  <img
+                    src={getPosterImageUrl(item)}
+                    alt={item.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    referrerPolicy="no-referrer"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+
+                  {/* Play Button Overlay */}
+                  <div className="absolute inset-0 flex items-center justify-center opacity-90 group-hover:opacity-100 transition-opacity">
+                    <div className="w-12 h-12 rounded-full bg-purple-600/90 text-white flex items-center justify-center shadow-lg shadow-purple-600/50 group-hover:scale-110 transition-transform">
+                      <Play className="w-5 h-5 fill-white ml-0.5" />
+                    </div>
+                  </div>
+
+                  {/* Category Tag */}
+                  <div className="absolute top-3 left-3">
+                    <span className="px-2.5 py-1 rounded-md bg-black/60 backdrop-blur-md border border-white/10 text-[10px] font-bold text-purple-300">
+                      {item.categoryLabel}
+                    </span>
                   </div>
                 </div>
 
-                {/* Category Tag */}
-                <div className="absolute top-3 left-3">
-                  <span className="px-2.5 py-1 rounded-md bg-black/60 backdrop-blur-md border border-white/10 text-[10px] font-bold text-purple-300">
-                    {item.categoryLabel}
-                  </span>
+                {/* Card Footer Info */}
+                <div className="p-5 space-y-2">
+                  <div className="flex items-center justify-between">
+                    <h3 className="font-display font-bold text-lg text-white group-hover:text-purple-300 transition-colors">
+                      {item.title}
+                    </h3>
+                    <span className="text-xs text-zinc-500 font-mono">{item.year}</span>
+                  </div>
+
+                  <p className="text-xs text-zinc-400 line-clamp-2">
+                    {item.description}
+                  </p>
+
+                  <div className="pt-2 flex items-center justify-between text-[11px] text-zinc-400 font-medium">
+                    <span>Cliente: <strong className="text-zinc-300">{item.client}</strong></span>
+                    <span className="flex items-center gap-1 text-purple-400 font-semibold group-hover:underline">
+                      Assistir Vídeo <ExternalLink className="w-3 h-3" />
+                    </span>
+                  </div>
                 </div>
               </div>
-
-              {/* Card Footer Info */}
-              <div className="p-5 space-y-2">
-                <div className="flex items-center justify-between">
-                  <h3 className="font-display font-bold text-lg text-white group-hover:text-purple-300 transition-colors">
-                    {item.title}
-                  </h3>
-                  <span className="text-xs text-zinc-500 font-mono">{item.year}</span>
-                </div>
-
-                <p className="text-xs text-zinc-400 line-clamp-2">
-                  {item.description}
-                </p>
-
-                <div className="pt-2 flex items-center justify-between text-[11px] text-zinc-400 font-medium">
-                  <span>Cliente: <strong className="text-zinc-300">{item.client}</strong></span>
-                  <span className="flex items-center gap-1 text-purple-400 font-semibold group-hover:underline">
-                    Assistir Vídeo <ExternalLink className="w-3 h-3" />
-                  </span>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
 
       </div>
 
