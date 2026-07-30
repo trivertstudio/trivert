@@ -1,7 +1,25 @@
 import React, { useState } from 'react';
 import { PORTFOLIO_ITEMS } from '../data/portfolio';
 import { PortfolioItem } from '../types';
-import { Play, X, ExternalLink, Film, Sparkles } from 'lucide-react';
+import { Play, X, ExternalLink, Film } from 'lucide-react';
+
+const getYouTubeVideoId = (url: string) => {
+  const match = url.match(/(?:youtube\.com\/watch\?v=|youtube\.com\/embed\/|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
+  return match?.[1] ?? null;
+};
+
+const isYouTubeUrl = (url: string) => Boolean(getYouTubeVideoId(url));
+
+const getYouTubeEmbedUrl = (url: string) => {
+  const videoId = getYouTubeVideoId(url);
+  return videoId ? `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1` : '';
+};
+
+const getPosterImageUrl = (item: PortfolioItem) => {
+  const videoUrl = item.videoUrl || item.posterUrl;
+  const youtubeId = getYouTubeVideoId(videoUrl);
+  return youtubeId ? `https://img.youtube.com/vi/${youtubeId}/hqdefault.jpg` : item.posterUrl;
+};
 
 export const Portfolio: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<string>('todos');
@@ -14,6 +32,7 @@ export const Portfolio: React.FC = () => {
     { id: 'reels', label: 'Reels & Mobile' },
     { id: 'drone', label: 'Drone Aéreo' },
     { id: 'comercial', label: 'Comercial' },
+    { id: 'fotos', label: 'Fotos' },
   ];
 
   const filteredItems =
@@ -69,7 +88,7 @@ export const Portfolio: React.FC = () => {
               {/* Poster Image */}
               <div className="relative aspect-video overflow-hidden bg-zinc-950">
                 <img
-                  src={item.posterUrl}
+                  src={getPosterImageUrl(item)}
                   alt={item.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   referrerPolicy="no-referrer"
@@ -142,12 +161,22 @@ export const Portfolio: React.FC = () => {
 
             {/* Video Player Frame */}
             <div className="relative aspect-video rounded-xl overflow-hidden bg-black">
-              <video
-                src={selectedVideo.videoUrl}
-                controls
-                autoPlay
-                className="w-full h-full object-cover"
-              />
+              {isYouTubeUrl(selectedVideo.videoUrl) ? (
+                <iframe
+                  src={getYouTubeEmbedUrl(selectedVideo.videoUrl)}
+                  title={selectedVideo.title}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  className="w-full h-full"
+                />
+              ) : (
+                <video
+                  src={selectedVideo.videoUrl}
+                  controls
+                  autoPlay
+                  className="w-full h-full object-cover"
+                />
+              )}
             </div>
 
             {/* Modal Description */}

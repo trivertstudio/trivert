@@ -33,7 +33,7 @@ export interface CalculatorState {
 export interface PortfolioItem {
   id: string;
   title: string;
-  category: 'institucional' | 'eventos' | 'reels' | 'drone' | 'comercial';
+  category: 'institucional' | 'eventos' | 'reels' | 'drone' | 'comercial' | 'fotos';
   categoryLabel: string;
   posterUrl: string;
   videoUrl: string;

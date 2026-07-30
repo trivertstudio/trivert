@@ -113,7 +113,7 @@ export const ServicesGrid: React.FC<ServicesGridProps> = ({
                       </span>
                     </div>
 
-                    <p className="text-zinc-400 text-xs leading-relaxed">
+                    <p className="text-zinc-400 text-xs leading-relaxed whitespace-normal break-words">
                       {service.description}
                     </p>
                   </div>

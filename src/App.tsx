@@ -91,7 +91,6 @@ export default function App() {
         <Calculator
           calculatorState={calculatorState}
           onUpdateState={handleUpdateState}
-          onOpenSettings={() => setIsSettingsOpen(true)}
         />
 
         <Portfolio />

@@ -55,5 +55,16 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     client: 'TechX Global',
     year: '2026',
     description: 'Vídeo comercial focado em design de produto, jogo de luzes em estúdio escuro e animações de texto modernas.'
+  },
+  {
+    id: '6',
+    title: 'Essência da Marca',
+    category: 'fotos',
+    categoryLabel: 'Sessão Fotográfica',
+    posterUrl: 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=1200&q=80',
+    videoUrl: '',
+    client: 'Studio Belleza',
+    year: '2025',
+    description: 'Campanha editorial com estética elegante, luz natural e direção de arte para identidade visual forte.'
   }
 ];

@@ -23,7 +23,6 @@ import {
   FileText,
   Zap,
   Sparkles,
-  Info,
   ChevronRight,
   RotateCcw,
   CheckCircle2
@@ -32,13 +31,11 @@ import {
 interface CalculatorProps {
   calculatorState: CalculatorState;
   onUpdateState: (newState: Partial<CalculatorState>) => void;
-  onOpenSettings: () => void;
 }
 
 export const Calculator: React.FC<CalculatorProps> = ({
   calculatorState,
   onUpdateState,
-  onOpenSettings,
 }) => {
   const [copied, setCopied] = useState(false);
 
@@ -409,7 +406,7 @@ export const Calculator: React.FC<CalculatorProps> = ({
                             {isChecked && <Check className="w-3 h-3 text-white" />}
                           </div>
                         </div>
-                        <p className="text-[11px] text-zinc-400 leading-snug line-clamp-2">
+                        <p className="text-[11px] text-zinc-400 leading-snug whitespace-normal break-words">
                           {extra.description}
                         </p>
                         <span className="font-mono text-xs font-bold text-purple-400">
@@ -603,14 +600,6 @@ export const Calculator: React.FC<CalculatorProps> = ({
                   >
                     <Copy className="w-3.5 h-3.5 text-purple-400" />
                     <span>{copied ? 'Copiado!' : 'Copiar Resumo em Texto'}</span>
-                  </button>
-
-                  <button
-                    onClick={onOpenSettings}
-                    className="p-2.5 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-zinc-400 hover:text-white border border-zinc-800 text-xs transition-colors"
-                    title="Editar WhatsApp de destino"
-                  >
-                    <Info className="w-4 h-4" />
                   </button>
                 </div>
               </div>
