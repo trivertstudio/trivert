@@ -1,4 +1,5 @@
 import { ServiceItem, AdditionalExtra, FAQItem } from '../types';
+import { withAssetBuster } from '../utils/image';
 
 export const MANDATORY_SERVICE_ID = 'videomaker';
 
@@ -18,7 +19,7 @@ export const SERVICES: ServiceItem[] = [
       'Edição e color grading profissional',
       'Trilha sonora licenciada inclusa'
     ],
-    image: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=1000&q=80'
+    image: withAssetBuster('https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=1000&q=80')
   },
   {
     id: 'fotografia',
@@ -35,7 +36,7 @@ export const SERVICES: ServiceItem[] = [
       'Direção de poses e enquadramentos',
       'Entregas prontas para impressão e web'
     ],
-    image: 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=1000&q=80'
+    image: withAssetBuster('https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=1000&q=80')
   },
   {
     id: 'drone',
@@ -52,7 +53,7 @@ export const SERVICES: ServiceItem[] = [
       'Perspectivas aéreas panorâmicas',
       'Integração perfeita com o vídeo principal'
     ],
-    image: 'https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&w=1000&q=80'
+    image: withAssetBuster('https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&w=1000&q=80')
   },
   {
     id: 'storymaker',
@@ -69,7 +70,7 @@ export const SERVICES: ServiceItem[] = [
       'Bastidores e momentos espontâneos',
       'Geração de desejo e urgência instantânea'
     ],
-    image: 'https://images.unsplash.com/photo-1575664463429-bf4d3c296604?q=80&w=2352&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+    image: withAssetBuster('https://images.unsplash.com/photo-1575664463429-bf4d3c296604?q=80&w=2352&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')
   },
   {
     id: 'videomaker-mobile',
@@ -86,7 +87,7 @@ export const SERVICES: ServiceItem[] = [
       'Formatado para máxima retenção de retenção',
       'Pronto para tráfego pago ou orgânico'
     ],
-    image: 'https://images.unsplash.com/photo-1618228123700-a1c948bb2bd1?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&v=2'
+    image: withAssetBuster('https://images.unsplash.com/photo-1618228123700-a1c948bb2bd1?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&v=2')
   }
 ];
 
