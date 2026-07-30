@@ -6,8 +6,8 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     title: 'Aura Luxury Residence',
     category: 'institucional',
     categoryLabel: 'Vídeo Institucional & Arquitetura',
-    posterUrl: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
-    videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-modern-interior-design-of-a-living-room-41527-large.mp4',
+    posterUrl: 'https://www.youtube.com/watch?v=LrzL7pYa7eg',
+    videoUrl: 'https://www.youtube.com/watch?v=LrzL7pYa7eg',
     client: 'Aura Incorporadora',
     year: '2026',
     description: 'Filme arquitetônico de alto padrão combinando captação interna em 4K 60fps com tomadas aéreas de drone ao pôr do sol.'

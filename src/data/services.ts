@@ -137,6 +137,6 @@ export const FAQS: FAQItem[] = [
   },
   {
     question: 'Vocês atendem fora da cidade sede?',
-    answer: 'Atendemos em qualquer região do Brasil e exterior. Para locais fora do nosso raio padrão de atendimento, informaremos os custos de deslocamento de forma transparente após o envio da proposta no WhatsApp.'
+    answer: 'Atendemos em toda a região Nordeste. Para locais fora do nosso raio padrão de atendimento, informaremos os custos de deslocamento de forma transparente após o envio da proposta pelo WhatsApp.'
   }
 ];

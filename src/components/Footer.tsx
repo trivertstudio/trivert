@@ -102,15 +102,15 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateToCalculator }) => {
             <ul className="space-y-2.5">
               <li className="flex items-center gap-2">
                 <MessageCircle className="w-4 h-4 text-purple-400 shrink-0" />
-                <span>WhatsApp: (11) 99999-8888</span>
+                <span>WhatsApp: (85) 9 9102-6580</span>
               </li>
               <li className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-purple-400 shrink-0" />
-                <span>contato@trivert.com.br</span>
+                <span>trivertstudio@gmail.com</span>
               </li>
               <li className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 text-purple-400 shrink-0 mt-0.5" />
-                <span>São Paulo - SP • Atendimento em todo o Brasil</span>
+                <span>Fortaleza - CE • atendimento em todo o Ceará</span>
               </li>
             </ul>
           </div>
@@ -119,7 +119,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateToCalculator }) => {
 
         {/* Bottom Bar & Back to top button */}
         <div className="pt-8 border-t border-zinc-900 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-zinc-500">
-          <p>© {new Date().getFullYear()} Trivert. Todos os direitos reservados. Design e cálculo audiovisual premium.</p>
+          <p>© {new Date().getFullYear()} Trivert. Todos os direitos reservados. Design e audiovisual premium.</p>
 
           <button
             onClick={scrollToTop}
