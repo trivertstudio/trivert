@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Video, Calculator, Menu, X, MessageCircle, Settings, ChevronRight } from 'lucide-react';
+import { Video, Calculator, Menu, X, MessageCircle, ChevronRight } from 'lucide-react';
 
 interface NavbarProps {
   whatsappNumber: string;
@@ -99,14 +99,6 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Right Action Controls */}
           <div className="hidden sm:flex items-center gap-3">
             <button
-              onClick={onOpenSettings}
-              title="Configurar número do WhatsApp"
-              className="p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-white hover:border-purple-500/50 transition-all duration-200"
-            >
-              <Settings className="w-4 h-4" />
-            </button>
-
-            <button
               onClick={onNavigateToCalculator}
               className="relative inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-semibold text-xs tracking-wide transition-all duration-300 shadow-lg shadow-purple-600/25 hover:shadow-purple-600/40 hover:-translate-y-0.5 active:translate-y-0"
             >
@@ -117,13 +109,6 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           {/* Mobile Menu Toggle */}
           <div className="flex items-center gap-2 md:hidden">
-            <button
-              onClick={onOpenSettings}
-              className="p-2 rounded-lg bg-zinc-900 border border-zinc-800 text-zinc-400"
-            >
-              <Settings className="w-4 h-4" />
-            </button>
-
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-200 hover:text-white focus:outline-none"

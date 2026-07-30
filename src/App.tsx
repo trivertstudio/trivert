@@ -20,7 +20,7 @@ export default function App() {
     eventDate: '',
     location: '',
     notes: '',
-    whatsappNumber: '5511999998888',
+    whatsappNumber: '5585991026580',
   });
 
   const [isSettingsOpen, setIsSettingsOpen] = useState<boolean>(false);
