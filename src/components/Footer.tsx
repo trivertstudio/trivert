@@ -74,6 +74,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateToCalculator }) => {
             <ul className="space-y-2">
               <li><a href="#inicio" className="hover:text-purple-300 transition-colors">Início</a></li>
               <li><a href="#servicos" className="hover:text-purple-300 transition-colors">Serviços</a></li>
+              <li><a href="#planos" className="hover:text-purple-300 transition-colors">Planos</a></li>
               <li><a href="#calculadora" className="hover:text-purple-300 transition-colors">Calculadora de Orçamento</a></li>
               <li><a href="#portfolio" className="hover:text-purple-300 transition-colors">Portfólio de Vídeos</a></li>
               <li><a href="#faq" className="hover:text-purple-300 transition-colors">Perguntas Frequentes</a></li>
@@ -86,11 +87,11 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateToCalculator }) => {
               Serviços
             </h4>
             <ul className="space-y-2">
-              <li className="text-zinc-300 font-semibold">🎥 Videomaker (R$ 500)</li>
-              <li>📸 Fotografia (+ R$ 250)</li>
-              <li>🚁 Drone 4K (+ R$ 200)</li>
-              <li>📱 Storymaker (+ R$ 180)</li>
-              <li>📲 Videomaker Mobile (+ R$ 150)</li>
+              <li className="text-zinc-300 font-semibold">Videomaker </li>
+              <li>Fotografia </li>
+              <li>Drone 4K </li>
+              <li>Storymaker </li>
+              <li>Videomaker Mobile </li>
             </ul>
           </div>
 

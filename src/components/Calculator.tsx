@@ -214,7 +214,7 @@ export const Calculator: React.FC<CalculatorProps> = ({
           </div>
 
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight">
-            Calculadora de <span className="purple-gradient-text">Orçamento</span>
+            Calculadora de Orçamento para <span className="purple-gradient-text">Eventos</span>
           </h2>
 
           <p className="text-zinc-400 text-sm sm:text-base leading-relaxed">

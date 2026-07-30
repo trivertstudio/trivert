@@ -9,6 +9,7 @@ import { Differentials } from './components/Differentials';
 import { FAQ } from './components/FAQ';
 import { Footer } from './components/Footer';
 import { WhatsAppSettingsModal } from './components/WhatsAppSettingsModal';
+import { MonthlyPlans } from './components/MonthlyPlans';
 import { CalculatorState } from './types';
 import { MANDATORY_SERVICE_ID } from './data/services';
 
@@ -92,6 +93,8 @@ export default function App() {
           calculatorState={calculatorState}
           onUpdateState={handleUpdateState}
         />
+
+        <MonthlyPlans whatsappNumber={calculatorState.whatsappNumber} />
 
         <Portfolio />
 
