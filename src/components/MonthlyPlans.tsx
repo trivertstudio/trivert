@@ -72,7 +72,7 @@ export const MonthlyPlans: React.FC<MonthlyPlansProps> = ({ whatsappNumber }) =>
   };
 
   return (
-    <section id="planos" className="py-24 bg-[#050507] border-t border-white/5">
+    <section id="planos" className="py-24 bg-[#050507] border-t border-white/5 relative z-0">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-14 space-y-4">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-950/70 border border-purple-500/30 text-purple-300 text-xs font-semibold uppercase tracking-wider">
@@ -87,11 +87,11 @@ export const MonthlyPlans: React.FC<MonthlyPlansProps> = ({ whatsappNumber }) =>
           </p>
         </div>
 
-        <div className="flex gap-6 overflow-x-auto px-4 -mx-4 snap-x snap-mandatory lg:overflow-visible lg:grid lg:grid-cols-3 lg:px-0 lg:-mx-0">
+        <div className="flex gap-4 overflow-x-auto px-4 -mx-4 snap-x snap-mandatory scroll-smooth overscroll-x-contain [-webkit-overflow-scrolling:touch] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:overflow-visible lg:grid lg:grid-cols-3 lg:px-0 lg:-mx-0 lg:snap-none lg:overscroll-auto">
           {plans.map((plan) => (
             <div
               key={plan.title}
-              className={`snap-start flex-shrink-0 min-w-[80%] sm:min-w-[60%] md:min-w-[45%] lg:min-w-0 lg:flex-1 group relative rounded-[2rem] border border-white/10 bg-zinc-950/80 p-8 shadow-2xl shadow-purple-900/10 transition hover:-translate-y-1 ${
+              className={`flex-shrink-0 min-w-[78%] sm:min-w-[64%] md:min-w-[46%] lg:min-w-0 lg:flex-1 snap-center [scroll-snap-stop:always] group relative rounded-[2rem] border border-white/10 bg-zinc-950/80 p-5 sm:p-7 shadow-2xl shadow-purple-900/10 transition duration-300 ease-out hover:-translate-y-1 lg:snap-none ${
                 plan.highlight ? 'border-purple-500/40 bg-purple-950/50 shadow-purple-600/20' : ''
               }`}
             >

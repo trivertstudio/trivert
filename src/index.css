@@ -89,7 +89,7 @@
 
   .purple-glow-sm,
   .purple-glow-lg {
-    display: none;
+    box-shadow: none;
   }
 }
 

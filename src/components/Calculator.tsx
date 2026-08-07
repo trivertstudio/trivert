@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import confetti from 'canvas-confetti';
 import {
   SERVICES,
@@ -38,6 +38,18 @@ export const Calculator: React.FC<CalculatorProps> = ({
   onUpdateState,
 }) => {
   const [copied, setCopied] = useState(false);
+  const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' ? window.innerWidth < 1024 : false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const {
     selectedServiceIds,
@@ -199,6 +211,117 @@ export const Calculator: React.FC<CalculatorProps> = ({
     }
   };
 
+  const SummaryPanel = () => (
+    <div className={`w-full glass-panel rounded-2xl border-2 border-purple-500/40 purple-glow-lg space-y-4 sm:space-y-5 relative z-20 ${isMobile ? 'p-4' : 'p-6'}`}>
+      <div className="flex items-center justify-between pb-4 border-b border-zinc-800">
+        <div className="flex items-center gap-2">
+          <div className="w-3 h-3 rounded-full bg-purple-500 animate-pulse" />
+          <h3 className={`font-display font-bold text-white ${isMobile ? 'text-lg' : 'text-xl'}`}>
+            Resumo do Orçamento
+          </h3>
+        </div>
+        <span className="px-2.5 py-1 rounded-md bg-purple-950 border border-purple-500/30 text-[11px] font-mono text-purple-300 font-bold">
+          LIVE
+        </span>
+      </div>
+
+      <div className="space-y-3">
+        <span className="text-xs font-bold text-zinc-400 uppercase tracking-wider block">
+          Serviços Selecionados:
+        </span>
+
+        <div className="space-y-2 max-h-60 overflow-y-auto pr-1">
+          {selectedServices.map((service) => (
+            <div
+              key={service.id}
+              className="flex items-center justify-between text-xs py-2 px-3 rounded-xl bg-zinc-900/90 border border-zinc-800/80"
+            >
+              <div className="flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4 text-purple-400 shrink-0" />
+                <span className="font-semibold text-white">
+                  {service.title}
+                </span>
+                {service.isMandatory && (
+                  <span className="text-[10px] text-purple-300 bg-purple-950 px-1.5 py-0.5 rounded">
+                    Base
+                  </span>
+                )}
+              </div>
+              <span className="font-mono font-bold text-purple-300">
+                R$ {service.price}
+              </span>
+            </div>
+          ))}
+
+          {selectedExtras.map((extra) => (
+            <div
+              key={extra.id}
+              className="flex items-center justify-between text-xs py-2 px-3 rounded-xl bg-zinc-900/60 border border-purple-500/20"
+            >
+              <div className="flex items-center gap-2">
+                <Zap className="w-3.5 h-3.5 text-purple-400 shrink-0" />
+                <span className="text-zinc-300">{extra.title}</span>
+              </div>
+              <span className="font-mono font-bold text-purple-400">
+                + R$ {extra.price}
+              </span>
+            </div>
+          ))}
+        </div>
+
+        {diarias > 1 && (
+          <div className="flex items-center justify-between text-xs text-zinc-400 pt-1 font-mono">
+            <span>Multiplicador Diárias:</span>
+            <span className="text-white font-bold">{diarias}x</span>
+          </div>
+        )}
+
+        {multiDayDiscount > 0 && (
+          <div className="flex items-center justify-between text-xs text-purple-300 pt-1 font-mono">
+            <span>Desconto Pacote:</span>
+            <span className="font-bold">- R$ {multiDayDiscount}</span>
+          </div>
+        )}
+      </div>
+
+      <div className="p-4 rounded-xl bg-gradient-to-br from-purple-950/80 via-zinc-900 to-black border border-purple-500/50 space-y-1 text-center shadow-inner">
+        <span className="text-xs font-medium text-zinc-400 uppercase tracking-widest block">
+          Valor Total Estimado
+        </span>
+        <div className={`font-display font-extrabold text-white tracking-tight ${isMobile ? 'text-2xl sm:text-3xl' : 'text-4xl sm:text-5xl'}`}>
+          R$ {finalTotal.toLocaleString('pt-BR')},00
+        </div>
+        <span className="text-[11px] text-purple-300 block font-medium">
+          Até 12x no cartão ou desconto à vista no PIX
+        </span>
+      </div>
+
+      <div className="space-y-2.5 pt-2">
+        <button
+          onClick={handleSubmitWhatsApp}
+          className="w-full flex items-center justify-center gap-3 py-4 px-6 rounded-xl bg-green-600 hover:bg-green-500 text-white font-bold text-sm tracking-wide transition-all duration-300 shadow-xl shadow-green-600/30 hover:shadow-green-600/50 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+        >
+          <MessageCircle className="w-5 h-5 fill-white" />
+          <span>Solicitar Orçamento no WhatsApp</span>
+        </button>
+
+        <div className="flex items-center gap-2">
+          <button
+            onClick={handleCopySummary}
+            className="flex-1 flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-zinc-300 hover:text-white border border-zinc-800 text-xs font-medium transition-colors"
+          >
+            <Copy className="w-3.5 h-3.5 text-purple-400" />
+            <span>{copied ? 'Copiado!' : 'Copiar Resumo em Texto'}</span>
+          </button>
+        </div>
+      </div>
+
+      <p className="text-[11px] text-zinc-500 text-center leading-relaxed">
+        *O envio pelo WhatsApp gera uma mensagem pré-formatada. Nossa equipe responde em minutos para tirar dúvidas e fechar a data.
+      </p>
+    </div>
+  );
+
   return (
     <section id="calculadora" className="py-24 bg-[#050507] relative overflow-hidden">
       {/* Background glow effects */}
@@ -224,7 +347,10 @@ export const Calculator: React.FC<CalculatorProps> = ({
 
         {/* Main Grid: Left Controls & Right Real-Time Summary */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          
+          <div className={`w-full lg:hidden mb-4 sticky top-3 z-30 order-first self-start ${isMobile ? 'block' : 'hidden'}`}>
+            {SummaryPanel()}
+          </div>
+
           {/* Left Column: Service Selection Toggles + Inputs */}
           <div className="lg:col-span-7 space-y-8">
             
@@ -492,124 +618,8 @@ export const Calculator: React.FC<CalculatorProps> = ({
           </div>
 
           {/* Right Column: Real-Time Dynamic Summary & Sticky CTA */}
-          <div className="lg:col-span-5 sticky top-28 space-y-4">
-            
-            {/* Main Summary Glass Container */}
-            <div className="glass-panel rounded-2xl p-6 border-2 border-purple-500/40 purple-glow-lg space-y-6">
-              
-              {/* Card Title Header */}
-              <div className="flex items-center justify-between pb-4 border-b border-zinc-800">
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 rounded-full bg-purple-500 animate-pulse" />
-                  <h3 className="font-display font-bold text-xl text-white">
-                    Resumo do Orçamento
-                  </h3>
-                </div>
-                <span className="px-2.5 py-1 rounded-md bg-purple-950 border border-purple-500/30 text-[11px] font-mono text-purple-300 font-bold">
-                  LIVE
-                </span>
-              </div>
-
-              {/* Itemized Services Selected List */}
-              <div className="space-y-3">
-                <span className="text-xs font-bold text-zinc-400 uppercase tracking-wider block">
-                  Serviços Selecionados:
-                </span>
-
-                <div className="space-y-2 max-h-60 overflow-y-auto pr-1">
-                  {selectedServices.map((service) => (
-                    <div
-                      key={service.id}
-                      className="flex items-center justify-between text-xs py-2 px-3 rounded-xl bg-zinc-900/90 border border-zinc-800/80"
-                    >
-                      <div className="flex items-center gap-2">
-                        <CheckCircle2 className="w-4 h-4 text-purple-400 shrink-0" />
-                        <span className="font-semibold text-white">
-                          {service.title}
-                        </span>
-                        {service.isMandatory && (
-                          <span className="text-[10px] text-purple-300 bg-purple-950 px-1.5 py-0.5 rounded">
-                            Base
-                          </span>
-                        )}
-                      </div>
-                      <span className="font-mono font-bold text-purple-300">
-                        R$ {service.price}
-                      </span>
-                    </div>
-                  ))}
-
-                  {selectedExtras.map((extra) => (
-                    <div
-                      key={extra.id}
-                      className="flex items-center justify-between text-xs py-2 px-3 rounded-xl bg-zinc-900/60 border border-purple-500/20"
-                    >
-                      <div className="flex items-center gap-2">
-                        <Zap className="w-3.5 h-3.5 text-purple-400 shrink-0" />
-                        <span className="text-zinc-300">{extra.title}</span>
-                      </div>
-                      <span className="font-mono font-bold text-purple-400">
-                        + R$ {extra.price}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-
-                {diarias > 1 && (
-                  <div className="flex items-center justify-between text-xs text-zinc-400 pt-1 font-mono">
-                    <span>Multiplicador Diárias:</span>
-                    <span className="text-white font-bold">{diarias}x</span>
-                  </div>
-                )}
-
-                {multiDayDiscount > 0 && (
-                  <div className="flex items-center justify-between text-xs text-purple-300 pt-1 font-mono">
-                    <span>Desconto Pacote:</span>
-                    <span className="font-bold">- R$ {multiDayDiscount}</span>
-                  </div>
-                )}
-              </div>
-
-              {/* Total Display Block */}
-              <div className="p-4 rounded-xl bg-gradient-to-br from-purple-950/80 via-zinc-900 to-black border border-purple-500/50 space-y-1 text-center shadow-inner">
-                <span className="text-xs font-medium text-zinc-400 uppercase tracking-widest block">
-                  Valor Total Estimado
-                </span>
-                <div className="font-display font-extrabold text-4xl sm:text-5xl text-white tracking-tight">
-                  R$ {finalTotal.toLocaleString('pt-BR')},00
-                </div>
-                <span className="text-[11px] text-purple-300 block font-medium">
-                  Até 12x no cartão ou desconto à vista no PIX
-                </span>
-              </div>
-
-              {/* Primary Action Button: Request Quote on WhatsApp */}
-              <div className="space-y-2.5 pt-2">
-                <button
-                  onClick={handleSubmitWhatsApp}
-                  className="w-full flex items-center justify-center gap-3 py-4 px-6 rounded-xl bg-green-600 hover:bg-green-500 text-white font-bold text-sm tracking-wide transition-all duration-300 shadow-xl shadow-green-600/30 hover:shadow-green-600/50 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
-                >
-                  <MessageCircle className="w-5 h-5 fill-white" />
-                  <span>Solicitar Orçamento no WhatsApp</span>
-                </button>
-
-                <div className="flex items-center gap-2">
-                  <button
-                    onClick={handleCopySummary}
-                    className="flex-1 flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-zinc-300 hover:text-white border border-zinc-800 text-xs font-medium transition-colors"
-                  >
-                    <Copy className="w-3.5 h-3.5 text-purple-400" />
-                    <span>{copied ? 'Copiado!' : 'Copiar Resumo em Texto'}</span>
-                  </button>
-                </div>
-              </div>
-
-              <p className="text-[11px] text-zinc-500 text-center leading-relaxed">
-                *O envio pelo WhatsApp gera uma mensagem pré-formatada. Nossa equipe responde em minutos para tirar dúvidas e fechar a data.
-              </p>
-
-            </div>
-
+          <div className="hidden lg:block lg:col-span-5 lg:sticky lg:top-28 self-start space-y-4 z-20">
+            {SummaryPanel()}
           </div>
 
         </div>
